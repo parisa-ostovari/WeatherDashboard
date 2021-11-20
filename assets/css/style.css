@@ -1,0 +1,36 @@
+.jumbotron {
+    background-image: url("../images/headerBackground.jpeg");
+    background-size: cover;
+    color: white;
+    padding: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn {
+    background-color: rgb(151, 169, 208);
+}
+
+li {
+    list-style-type: none;
+}
+
+.forcastCard{
+    background-color: rgb(228, 241, 250);
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
+.purple{
+    color: purple;
+}
+.forcastImg{
+    width: 35px;
+    height: 35px;
+}
