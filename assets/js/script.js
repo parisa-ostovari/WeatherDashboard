@@ -9,18 +9,15 @@ var cityButtons = [];
 var openWeatherApiKey = "d91f911bcf2c0f925fb6535547a5ddc9";
 
 function searchAndGenerateWeather(city) {
-    //clear the html for new content
     mainEl.innerHTML = "";
     forecast.innerHTML = "";
 
-    //set the variable that will openweather API to generate the url of the city's weather forecast
     var geoLocateCityURL =
         "https://api.openweathermap.org/geo/1.0/direct?q=" +
         city +
         ",US&limit=5&appid=" +
         openWeatherApiKey;
 
-    //grab the url and turn it into JSON content
     fetch(geoLocateCityURL)
         .then(function (response) {
             return response.json();
@@ -35,7 +32,7 @@ function searchAndGenerateWeather(city) {
                 "&exclude=minutely,hourly&units=imperial&appid=" +
                 openWeatherApiKey;
 
-            //Fetching the weather data from openweather API
+            //Fetching the Openweather API to generate the weather data
             fetch(getWeatherUrl)
                 .then(function (response) {
                     return response.json();
@@ -57,7 +54,7 @@ function searchAndGenerateWeather(city) {
                     var cityWeatherList = document.createElement("ul");
                     var uviInfo = weatherData.current.uvi
                     
-                    //The items that will appear on the weather card
+                    //Items that will appear on the weather card
                     var temp = document.createElement("li");
                     temp.textContent = "Temperature: " + weatherData.current.temp + " F";
                     cityWeatherList.append(temp);
@@ -74,9 +71,9 @@ function searchAndGenerateWeather(city) {
                     uvi.textContent = "UV Index: " + uviInfo;
 
                     if(uviInfo <3){
-                      uvi.classList.add('purple')
-                    }else if (uviInfo <7){
                       uvi.classList.add('green')
+                    }else if (uviInfo <7){
+                      uvi.classList.add('yellow')
                     }else{
                       uvi.classList.add('red')
                     }
@@ -89,17 +86,15 @@ function searchAndGenerateWeather(city) {
                     forecastTitle.textContent = "5-Day Forecast";
                     forecast.append(forecastTitle);
 
-                    //For loop to pull out of the API until we have 5 results
                     for (var i = 0; i < 5; i++) {
                         var dailyWeather = weatherData.daily[i];
                         var container = document.createElement('div');
                         var dailyWeatherCard = document.createElement("div");
-                        dailyWeatherCard.setAttribute("class", "card h-100  p-2 forcastCard")
-                        //use Moment to find today's date and format it
+                        dailyWeatherCard.setAttribute("class", "card h-100  p-2 forecastCard")
                         var date = moment.unix(dailyWeather.sunrise).format("MM/DD/YYYY");
 
                         dailyWeatherCard.append(date);
-                        //create a variable for the weather icon image, call it in the API, then put it on the page
+
                         var weatherIcon = document.createElement("img");
                         weatherIcon.setAttribute(
                             "src",
@@ -109,8 +104,9 @@ function searchAndGenerateWeather(city) {
                         );
                         weatherIcon.setAttribute(
                           "class",
-                          "forcastImg"
+                          "forecastImg"
                       );
+                      
                         //Write all of the data to the screen
                         dailyWeatherCard.append(weatherIcon);
             
